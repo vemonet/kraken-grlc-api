@@ -1,0 +1,8 @@
+#+ summary: Testing DBpedia endpoint with SPARQL2Git
+#+ endpoint: http://dbpedia.org/sparql
+#+ tags:
+#+   - dbpedia
+#+ method: GET
+#+ pagination: 50
+
+select distinct ?type where {[] a ?type} LIMIT 20

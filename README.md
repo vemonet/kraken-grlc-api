@@ -1,0 +1,1 @@
+http://localhost:8088/api/vemonet/kraken-grlc-api/spec
