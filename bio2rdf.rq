@@ -17,5 +17,5 @@ SELECT distinct ?drug ?drugLabel
  ?drug db:target ?target .
  ?drug rdfs:label ?drugLabel .
  ?target a db:Target .
- ?target db:x-hgnc ?_GeneSymbol .
+ ?target db:x-hgnc ?_GeneSymbol_iri .
 }

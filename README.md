@@ -17,6 +17,12 @@ Gene name: SLC7A3
 
 GeneSymbol: <http://bio2rdf.org/hgnc:11061>
 
+```shell
+http://bio2rdf.org/hgnc:11061
+```
+
+
+
 
 
 ```sql
