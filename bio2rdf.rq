@@ -2,6 +2,8 @@
 #+ endpoint: http://bio2rdf.org/sparql
 #+ tags:
 #+   - Bio2RDF
+#+ enumerate:   
+#+   - gene
 #+ method: GET
 #+ pagination: 50
 
@@ -16,7 +18,7 @@ SELECT distinct ?omimGene ?geneName ?drug ?drugLabel
  ?drug rdfs:label ?drugLabel .
  ?target a db:Target .
  ?target db:gene-name ?geneName .
- FILTER regex(str(?geneName), "SLC7A3") .
+ FILTER regex(str(?geneName), "?_gene") .
  OPTIONAL {
   ?target db:x-hgnc ?hgncGeneSymbol .
   ?hgncGeneSymbol hgnc:x-omim ?omimGene .
