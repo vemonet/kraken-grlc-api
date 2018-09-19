@@ -1,9 +1,9 @@
-#+ summary: Bio2RDF What drugs/compounds target gene products of [gene]?
+#+ summary: Bio2RDF What drugs/compounds target gene products of gene?
 #+ endpoint: http://bio2rdf.org/sparql
 #+ tags:
 #+   - Bio2RDF
 #+ enumerate:   
-#+   - gene
+#+   - GeneSymbol
 #+ method: GET
 #+ pagination: 50
 
@@ -17,11 +17,5 @@ SELECT distinct ?omimGene ?geneName ?drug ?drugLabel
  ?drug db:target ?target .
  ?drug rdfs:label ?drugLabel .
  ?target a db:Target .
- ?target db:gene-name ?geneName .
- FILTER regex(str(?geneName), "?_gene") .
- OPTIONAL {
-  ?target db:x-hgnc ?hgncGeneSymbol .
-  ?hgncGeneSymbol hgnc:x-omim ?omimGene .
-  ?omimGene a omim:Gene .
- }
+ ?target db:x-hgnc ?_GeneSymbol .
 }
