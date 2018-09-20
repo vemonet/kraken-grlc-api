@@ -83,7 +83,7 @@ select distinct ?dbid ?drugUri ?drugName ?targetId ?targetLabel ?drugDescription
     ?drugDescriptionObj a x2rm:drugbank\/drug\/description .
     ?drugDescriptionObj x2rm:hasValue ?drugDescription .
     
-    # Get the drug's target
+    # Get the drugs target
     ?drugObj x2rm:hasChild ?targetsObj .
     ?targetsObj a x2rm:drugbank\/drug\/targets .
     ?targetsObj x2rm:hasChild ?targetObj .
