@@ -1,5 +1,5 @@
 #+ summary: What drugs/compounds target gene products of genes?
-#+ endpoint: http://localhost:7200/sparql
+#+ endpoint: http://localhost:7200/repositories/test
 #+ tags:
 #+   - NCATS
 #+ method: GET
