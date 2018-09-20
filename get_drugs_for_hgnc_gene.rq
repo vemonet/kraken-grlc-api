@@ -1,9 +1,9 @@
-#+ summary: What drugs/compounds target gene products of a given gene?
+#+ summary: What drugs/compounds target gene products of a given HGNC URI
 #+ endpoint: http://graphdb.dumontierlab.com/repositories/ncats
 #+ tags:
 #+   - NCATS
 #+ enumerate:
-#+   - geneName
+#+   - gene
 #+ method: GET
 #+ pagination: 50
 
@@ -13,12 +13,11 @@ PREFIX bioentity: <http://bioentity.io/vocab/>
 SELECT distinct ?gene ?geneLabel ?geneProductLabel ?drug ?drugLabel
 {
     ?gene a bioentity:Gene .
-    ?gene bioentity:id ?geneId . 
+    ?gene bioentity:id ?_gene_iri . 
     ?gene rdfs:label ?geneLabel .
     ?gene bioentity:has_gene_product ?geneProduct .
     ?geneProduct rdfs:label ?geneProductLabel .
     ?drug bioentity:affects ?geneProduct .
     ?drug a bioentity:Drug .
     ?drug rdfs:label ?drugLabel .
-    FILTER regex(str(?geneLabel), "?_geneName_iri") .
 }
