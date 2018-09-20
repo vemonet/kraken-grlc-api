@@ -52,7 +52,7 @@ SELECT distinct ?hgncGeneSymbol ?omimGene ?geneName ?drug ?drugLabel
 
 ```sql
 PREFIX x2rm: <http://ids.unimaas.nl/rdf2xml/model/>
-PREFIX kraken:<http://kraken/>
+PREFIX ido:<http://identifiers.org/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX obo: <http://purl.obolibrary.org/obo/>
@@ -83,7 +83,7 @@ select distinct ?dbid ?drugUri ?drugName ?targetId ?targetLabel ?drugDescription
     ?drugObj x2rm:hasChild ?dbidObj .
     ?drugObj x2rm:hasChild ?drugNameObj .
     ?drugObj x2rm:hasChild ?drugDescriptionObj .
-    BIND ( iri(concat("http://kraken/drugbank:", ?dbid)) AS ?drugUri )
+    BIND ( iri(concat("http://identifiers.org/drugbank:", ?dbid)) AS ?drugUri )
     
     # Get DrugBank ID (only primary)
 	?dbidObj a x2rm:drugbank\/drug\/drugbank-id .
@@ -107,7 +107,7 @@ select distinct ?dbid ?drugUri ?drugName ?targetId ?targetLabel ?drugDescription
     ?targetObj x2rm:hasChild ?targetIdObj .
     ?targetIdObj a x2rm:drugbank\/drug\/targets\/target\/id  .
     ?targetIdObj x2rm:hasValue ?targetId .
-    BIND ( iri(concat("http://kraken/drugbank:", ?targetId)) AS ?geneProductUri )
+    BIND ( iri(concat("http://identifiers.org/drugbank:", ?targetId)) AS ?geneProductUri )
     
     ?targetObj x2rm:hasChild ?targetLabelObj .
     ?targetLabelObj a x2rm:drugbank\/drug\/targets\/target\/name  .
@@ -124,7 +124,7 @@ select distinct ?dbid ?drugUri ?drugName ?targetId ?targetLabel ?drugDescription
     ?identifierObj a x2rm:drugbank\/drug\/targets\/target\/polypeptide\/external-identifiers\/external-identifier\/identifier .
     ?identifierObj x2rm:hasValue ?hgncIdentifier .
     FILTER( REGEX( ?hgncIdentifier, "^HGNC:" ) ) .
-    BIND ( iri(concat("http://kraken/", lcase(?hgncIdentifier))) AS ?hgncUri )
+    BIND ( iri(concat("http://identifiers.org/", lcase(?hgncIdentifier))) AS ?hgncUri )
 } 
 }
 ```
@@ -155,7 +155,7 @@ WHERE {SELECT ?s ?hgncid ?geneName ?symbol ?hgncUri
       ?s kraken:HgncId ?hgncid.
       ?s kraken:ApprovedSymbol ?symbol.
      ?s ?p ?o .
-      BIND ( iri(concat("http://kraken/", lcase(?hgncid))) AS ?hgncUri )
+      BIND ( iri(concat("http://identifiers.org/", lcase(?hgncid))) AS ?hgncUri )
    }
 }
 ```
@@ -170,7 +170,6 @@ What drugs/compounds target gene products of [gene]?
 
 ```sql
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX kraken: <http://kraken/>
 PREFIX bioentity: <http://bioentity.io/vocab/>
 SELECT distinct ?gene ?geneLabel ?geneProductLabel ?drug ?drugLabel
 {

@@ -8,7 +8,6 @@
 #+ pagination: 50
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX kraken: <http://kraken/>
 PREFIX bioentity: <http://bioentity.io/vocab/>
 SELECT distinct ?gene ?geneLabel ?geneProductLabel ?drug ?drugLabel
 {
