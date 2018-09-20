@@ -1,29 +1,16 @@
-What they say: http://localhost:8088/api/vemonet/kraken-grlc-api/spec
-
-Reality: http://localhost:8001/api/vemonet/kraken-grlc-api/spec
-
-
-
 ```shell
 cd grlc
+# Update GRLC_GITHUB_ACCESS_TOKEN to put yours
 docker-compose -f docker-compose.yml up
 ```
+
+**Spec**: http://localhost:8001/api/vemonet/kraken-grlc-api/spec
 
 **Swagger UI**: http://localhost:8001/api/vemonet/kraken-grlc-api/api-docs
 
 
 
-Gene name: SLC7A3
-
-GeneSymbol: <http://bio2rdf.org/hgnc:11061>
-
-```shell
-http://bio2rdf.org/hgnc:11061
-```
-
-
-
-
+### Equivalent query on Bio2RDF
 
 ```sql
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -43,8 +30,6 @@ SELECT distinct ?hgncGeneSymbol ?omimGene ?geneName ?drug ?drugLabel
  ?omimGene a omim:Gene .
 }
 ```
-
-
 
 
 
@@ -159,8 +144,6 @@ WHERE {SELECT ?s ?hgncid ?geneName ?symbol ?hgncUri
    }
 }
 ```
-
-
 
 
 
