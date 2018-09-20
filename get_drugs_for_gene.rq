@@ -20,5 +20,5 @@ SELECT distinct ?gene ?geneLabel ?geneProductLabel ?drug ?drugLabel
     ?drug bioentity:affects ?geneProduct .
     ?drug a bioentity:Drug .
     ?drug rdfs:label ?drugLabel .
-    FILTER regex(str(?geneLabel), "?_geneName_iri") .
+    FILTER regex(str(?geneLabel), "?_geneName_literal") .
 }
