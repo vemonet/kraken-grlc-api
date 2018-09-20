@@ -1,0 +1,21 @@
+#+ summary: What drugs/compounds target gene products of genes?
+#+ endpoint: http://localhost:7200/sparql
+#+ tags:
+#+   - NCATS
+#+ method: GET
+#+ pagination: 50
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX kraken: <http://kraken/>
+PREFIX bioentity: <http://bioentity.io/vocab/>
+SELECT distinct ?gene ?geneLabel ?geneProductLabel ?drug ?drugLabel
+{
+    ?gene a bioentity:Gene .
+    ?gene bioentity:id ?geneId . 
+    ?gene rdfs:label ?geneLabel .
+    ?gene bioentity:has_gene_product ?geneProduct .
+    ?geneProduct rdfs:label ?geneProductLabel .
+    ?drug bioentity:affects ?geneProduct .
+    ?drug a bioentity:Drug .
+    ?drug rdfs:label ?drugLabel .
+}
