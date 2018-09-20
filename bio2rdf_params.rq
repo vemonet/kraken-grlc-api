@@ -2,6 +2,8 @@
 #+ endpoint: http://bio2rdf.org/sparql
 #+ tags:
 #+   - Bio2RDF
+#+ enumerate:   
+#+   - GeneSymbol
 #+ method: GET
 #+ pagination: 50
 
@@ -9,11 +11,11 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX db: <http://bio2rdf.org/drugbank_vocabulary:>
 PREFIX hgnc: <http://bio2rdf.org/hgnc_vocabulary:>
 PREFIX omim: <http://bio2rdf.org/omim_vocabulary:>
-SELECT distinct ?geneSymbol ?drug ?drugLabel
+SELECT distinct ?drug ?drugLabel
 {
  ?drug a db:Drug .
  ?drug db:target ?target .
  ?drug rdfs:label ?drugLabel .
  ?target a db:Target .
- ?target db:x-hgnc ?geneSymbol .
+ ?target db:x-hgnc ?_GeneSymbol_iri .
 }
