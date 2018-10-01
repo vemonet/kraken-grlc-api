@@ -9,7 +9,7 @@
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bioentity: <http://bioentity.io/vocab/>
 PREFIX dcterms: <http://purl.org/dc/terms/>
-SELECT distinct ?gene ?geneLabel ?geneProductLabel ?drug ?drugLabel
+SELECT distinct ?drug ?drugLabel
 {
     ?gene a bioentity:Gene .
     ?gene dcterms:identifier ?_geneId . 
