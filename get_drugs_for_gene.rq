@@ -1,4 +1,4 @@
-#+ summary: What drugs/compounds target gene products of a given gene? E.g. "HGNC:3535"
+#+ summary: What drugs/compounds target gene products of a given gene? E.g. HGNC\:3535
 #+ endpoint: http://graphdb.dumontierlab.com/repositories/ncats
 #+ tags:
 #+   - NCATS
