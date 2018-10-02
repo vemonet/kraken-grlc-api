@@ -1,4 +1,4 @@
-PREFIX x2rm: <http://ids.unimaas.nl/rdf2xml/model/>
+PREFIX d2smodel: <http://ids.unimaas.nl/rdf2xml/model/>
 PREFIX ido:<http://identifiers.org/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
@@ -26,50 +26,50 @@ CONSTRUCT
     }
 WHERE {
 select distinct ?dbid ?drugUri ?drugName ?targetId ?targetLabel ?drugDescription ?drugObj ?hgncIdentifier ?identifierObj ?hgncUri ?geneProductUri where { 
-    ?drugObj a x2rm:drugbank\/drug .
-    ?drugObj x2rm:hasChild ?dbidObj .
-    ?drugObj x2rm:hasChild ?drugNameObj .
-    ?drugObj x2rm:hasChild ?drugDescriptionObj .
+    ?drugObj a d2smodel:drugbank\/drug .
+    ?drugObj d2smodel:hasChild ?dbidObj .
+    ?drugObj d2smodel:hasChild ?drugNameObj .
+    ?drugObj d2smodel:hasChild ?drugDescriptionObj .
     BIND ( iri(concat("http://identifiers.org/drugbank:", ?dbid)) AS ?drugUri )
     
     # Get DrugBank ID (only primary)
-  ?dbidObj a x2rm:drugbank\/drug\/drugbank-id .
-    ?dbidObj x2rm:hasAttribute ?isPrimary .
-    ?dbidObj x2rm:hasValue ?dbid .
-    ?dbidObj x2rm:hasXPath ?xpath .
-    ?isPrimary a x2rm:drugbank\/drug\/drugbank-id\/\@primary .
+  ?dbidObj a d2smodel:drugbank\/drug\/drugbank-id .
+    ?dbidObj d2smodel:hasAttribute ?isPrimary .
+    ?dbidObj d2smodel:hasValue ?dbid .
+    ?dbidObj d2smodel:hasXPath ?xpath .
+    ?isPrimary a d2smodel:drugbank\/drug\/drugbank-id\/\@primary .
     
     # Get the drug name and description
-    ?drugNameObj a x2rm:drugbank\/drug\/name .
-    ?drugNameObj x2rm:hasValue ?drugName .
-    ?drugDescriptionObj a x2rm:drugbank\/drug\/description .
-    ?drugDescriptionObj x2rm:hasValue ?drugDescription .
+    ?drugNameObj a d2smodel:drugbank\/drug\/name .
+    ?drugNameObj d2smodel:hasValue ?drugName .
+    ?drugDescriptionObj a d2smodel:drugbank\/drug\/description .
+    ?drugDescriptionObj d2smodel:hasValue ?drugDescription .
     
     # Get the drugs target
-    ?drugObj x2rm:hasChild ?targetsObj .
-    ?targetsObj a x2rm:drugbank\/drug\/targets .
-    ?targetsObj x2rm:hasChild ?targetObj .
-    ?targetObj a x2rm:drugbank\/drug\/targets\/target .
+    ?drugObj d2smodel:hasChild ?targetsObj .
+    ?targetsObj a d2smodel:drugbank\/drug\/targets .
+    ?targetsObj d2smodel:hasChild ?targetObj .
+    ?targetObj a d2smodel:drugbank\/drug\/targets\/target .
     
-    ?targetObj x2rm:hasChild ?targetIdObj .
-    ?targetIdObj a x2rm:drugbank\/drug\/targets\/target\/id  .
-    ?targetIdObj x2rm:hasValue ?targetId .
+    ?targetObj d2smodel:hasChild ?targetIdObj .
+    ?targetIdObj a d2smodel:drugbank\/drug\/targets\/target\/id  .
+    ?targetIdObj d2smodel:hasValue ?targetId .
     BIND ( iri(concat("http://identifiers.org/drugbank:", ?targetId)) AS ?geneProductUri )
     
-    ?targetObj x2rm:hasChild ?targetLabelObj .
-    ?targetLabelObj a x2rm:drugbank\/drug\/targets\/target\/name  .
-    ?targetLabelObj x2rm:hasValue ?targetLabel .
+    ?targetObj d2smodel:hasChild ?targetLabelObj .
+    ?targetLabelObj a d2smodel:drugbank\/drug\/targets\/target\/name  .
+    ?targetLabelObj d2smodel:hasValue ?targetLabel .
     
     # Get the HGNC identifier for the gene coding for the gene product which is in target/polypeptide/external-identifier
-    ?targetObj x2rm:hasChild ?polypeptideObj .
-    ?polypeptideObj a x2rm:drugbank\/drug\/targets\/target\/polypeptide .
-    ?polypeptideObj x2rm:hasChild ?extIdentifiersObj .
-    ?extIdentifiersObj a x2rm:drugbank\/drug\/targets\/target\/polypeptide\/external-identifiers .   
-    ?extIdentifiersObj x2rm:hasChild ?extIdentifierObj .
-    ?extIdentifierObj a x2rm:drugbank\/drug\/targets\/target\/polypeptide\/external-identifiers\/external-identifier .
-    ?extIdentifierObj x2rm:hasChild ?identifierObj .
-    ?identifierObj a x2rm:drugbank\/drug\/targets\/target\/polypeptide\/external-identifiers\/external-identifier\/identifier .
-    ?identifierObj x2rm:hasValue ?hgncIdentifier .
+    ?targetObj d2smodel:hasChild ?polypeptideObj .
+    ?polypeptideObj a d2smodel:drugbank\/drug\/targets\/target\/polypeptide .
+    ?polypeptideObj d2smodel:hasChild ?extIdentifiersObj .
+    ?extIdentifiersObj a d2smodel:drugbank\/drug\/targets\/target\/polypeptide\/external-identifiers .   
+    ?extIdentifiersObj d2smodel:hasChild ?extIdentifierObj .
+    ?extIdentifierObj a d2smodel:drugbank\/drug\/targets\/target\/polypeptide\/external-identifiers\/external-identifier .
+    ?extIdentifierObj d2smodel:hasChild ?identifierObj .
+    ?identifierObj a d2smodel:drugbank\/drug\/targets\/target\/polypeptide\/external-identifiers\/external-identifier\/identifier .
+    ?identifierObj d2smodel:hasValue ?hgncIdentifier .
     FILTER( REGEX( ?hgncIdentifier, "^HGNC:" ) ) .
     BIND ( iri(concat("http://identifiers.org/", lcase(?hgncIdentifier))) AS ?hgncUri )
 } 
