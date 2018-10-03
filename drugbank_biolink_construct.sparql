@@ -23,7 +23,7 @@ CONSTRUCT
     ?hgncUri bioentity:id ?hgncUri .
     ?hgncUri bioentity:has_gene_product ?geneProductUri
     
-    }
+}
 WHERE {
 select distinct ?dbid ?drugUri ?drugName ?targetId ?targetLabel ?drugDescription ?drugObj ?hgncIdentifier ?identifierObj ?hgncUri ?geneProductUri where { 
     ?drugObj a d2smodel:drugbank\/drug .
