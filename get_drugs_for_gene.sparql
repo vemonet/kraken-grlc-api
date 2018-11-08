@@ -1,0 +1,22 @@
+#+ summary: What drugs/compounds target gene products of a given gene? E.g. HGNC:3535
+#+ endpoint: http://graphdb.dumontierlab.com/repositories/ncats
+#+ tags:
+#+   - NCATS
+#+ enumerate:
+#+   - geneId
+#+ method: GET
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX bioentity: <http://bioentity.io/vocab/>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT distinct ?drug ?drugLabel
+{
+    ?gene a bioentity:Gene .
+    ?gene dcterms:identifier ?_geneId . 
+    ?gene rdfs:label ?geneLabel .
+    ?gene bioentity:has_gene_product ?geneProduct .
+    ?geneProduct rdfs:label ?geneProductLabel .
+    ?drug bioentity:affects ?geneProduct .
+    ?drug a bioentity:Drug .
+    ?drug rdfs:label ?drugLabel .
+}
