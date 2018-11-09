@@ -5,7 +5,6 @@
 #+ enumerate:
 #+   - geneId
 #+ method: GET
-#+ pagination: 50
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX bioentity: <http://bioentity.io/vocab/>
